@@ -37,6 +37,7 @@
 | Día       | Evento    | Contenido                  | Información adicional |
 |:----------|:----------|:---------------------------|:----------------------|
 
+
 # Programa
 
 ## Equipo
