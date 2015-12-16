@@ -1,4 +1,4 @@
-# IIC2133 - Estructuras de datos y Algoritmos
+# IIC2133 - Estructuras de Datos y Algoritmos
 
 ## Tabla de contenidos
 * [Calendario](#calendario)
