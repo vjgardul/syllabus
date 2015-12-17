@@ -113,7 +113,7 @@ A continuación se presentan los contenidos del curso, no necesariamente en el o
 * Algoritmos
  * Ordenación
       * Ingenua ( *O(n<sup>2</sup>)* )
-      * Inteligente ( *O(n log(n))* )
+      * Inteligente ( *O(n log(n)) u O(n)* )
  * Optimización en grafos
       * Orden Topológico
       * Cobertura
