@@ -81,14 +81,14 @@ Existirán 4 tareas donde se explorarán problemas complejos, con 2 semanas de t
 
 ### Ayudantías 
 
-Todas las semanas se llevarán a cabo ayudantías, donde después de trabajar sobre el conocimiento adquirido en las cátedras, se les hará aplicar el conocimiento en controles cortos de alta dificultad. Dichos controles son opcionales, con premios otorgados a alumnos que contesten de manera perfecta.
+Todas las semanas se llevarán a cabo ayudantías, donde después de trabajar sobre el conocimiento adquirido en las cátedras, se les hará aplicar el conocimiento en controles cortos de alta dificultad. Dichos controles son opcionales, con décimas otorgadas a alumnos que contesten de manera perfecta.
 
 -------
 La nota final **_NF_** del curso se calcula de la siguiente manera:
 
 Dada la nota de evaluaciones escritas **_NE_**:
 
-![NE =  \frac{I_1 + I_2 + I_3 + 2*Ex - min(I_1,I_2,I_3,Ex) + DC}{4}](http://www.sciweavers.org/upload/Tex2Img_1450326078/eqn.png)
+![NE =  (I_1 + I_2 + I_3 + 2*Ex - min(I_1,I_2,I_3,Ex) + DC)/4](images/NE.png)
 
 (Siendo **_DC_** las décimas adicionales obtenidas en los controles de las ayudantías)
 
@@ -96,7 +96,7 @@ Si **_NE < 4, NF = NE_**
 
 de no ser así,
 
-![NF = (NE + NT)/2](http://www.sciweavers.org/upload/Tex2Img_1450325625/eqn.png)
+![NF = (NE + NT)/2](images/NF.png)
 
 Donde **_NT_** es el promedio de las tareas.
 
