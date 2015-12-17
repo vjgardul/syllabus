@@ -1,42 +1,11 @@
 # IIC2133 - Estructuras de Datos y Algoritmos
 
 ## Tabla de contenidos
-* [Calendario](#calendario)
-    * [Marzo](#marzo)
-    * [Abril](#abril)
-    * [Mayo](#mayo)
-    * [Junio](#junio)
-    * [Julio](#julio)
 * [Programa](#programa)
     * [Equipo](#equipo)
         * [Profesor](#profesor)
         * [Ayudantes](#ayudantes)
-* [Wiki](#wiki)
-  * [Guías](#guias)
-  * [Git](#git)
-* [Foro](#foro)
-    * [Etiquetas](#etiquetas)
-    * [Procedimiento](#procedimiento)
-
-
-# Calendario
-
-### Marzo
-| Día       | Evento    | Contenido                  | Información adicional |
-|:----------|:----------|:---------------------------|:----------------------|
-### Abril
-| Día       | Evento    | Contenido                  | Información adicional |
-|:----------|:----------|:---------------------------|:----------------------|
-### Mayo
-| Día       | Evento    | Contenido                  | Información adicional |
-|:----------|:----------|:---------------------------|:----------------------|
-### Junio
-| Día       | Evento    | Contenido                  | Información adicional |
-|:----------|:----------|:---------------------------|:----------------------|
-### Julio
-| Día       | Evento    | Contenido                  | Información adicional |
-|:----------|:----------|:---------------------------|:----------------------|
-
+    * [Descripción del Curso](#descripción del curso)
 
 # Programa
 
@@ -44,9 +13,9 @@
 
 ### Profesor
 
-| Nombre               | Sección | Github        |  Email         |
-|:-------------------- |:--------|:--------------| :--------------|
-| Yadran Eterovic Solano | 1 |  -  | yadran@ing.puc.cl |
+| Nombre               |  Email         |
+|:-------------------- |:--------------|
+| Yadran Eterovic Solano | yadran@ing.puc.cl |
 
 
 ### Ayudantes
@@ -160,12 +129,3 @@ Por “copia” se entiende incluir en el trabajo presentado como propio, partes
 Lo anterior se entiende como complemento al Reglamento del Alumno de la Pontificia Universidad Católica de Chile*.  Por ello, es posible pedir a la Universidad la aplicación de sanciones adicionales especificadas en dicho reglamento.
 
 <sub>``*``Reglamento del Alumno de la Pontificia Universidad Católica de Chile disponible en: http://admisionyregistros.uc.cl/alumnos/informacion-academica/reglamentos-estudiantiles</sub>
-
-# Wiki
-
-## Guías
-
-## Git
-
-# Foro
-
