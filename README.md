@@ -112,26 +112,26 @@ Todas las semanas se llevarán a cabo ayudantías, donde después de trabajar so
 
 A continuación se presentan los contenidos del curso, no necesariamente en el orden en que serán impartidos.
 
-*Estructuras elementales
- *Colas LIFO y FIFO.
- *Heaps binarios.
-*Diccionarios
- *Tablas de hash
- *Árboles de búsqueda
-*Algoritmos
- *Ordenación
+* Estructuras elementales
+ * Colas LIFO y FIFO.
+ * Heaps binarios.
+* Diccionarios
+ * Tablas de hash
+ * Árboles de búsqueda
+* Algoritmos
+ * Ordenación
   * Ingenua ( O( n^2 ) )
   * Inteligente (O(n log n) u O(n))
- *Optimización en grafos
-  *Orden Topológico
-  *Cobertura
-  *Búsqueda
-  *Flujo
- *Técnicas Algorítmicas
-  *Dividir y conquistar
-  *Algoritmos Codiciosos
-  *Programación Dinámica
-  *Backtracking
+ * Optimización en grafos
+  * Orden Topológico
+  * Cobertura
+  * Búsqueda
+  * Flujo
+ * Técnicas Algorítmicas
+  * Dividir y conquistar
+  * Algoritmos Codiciosos
+  * Programación Dinámica
+  * Backtracking
 
 ## Política de integridad académica
 
