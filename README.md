@@ -6,6 +6,7 @@
         * [Profesor](#profesor)
         * [Ayudantes](#ayudantes)
     * [Descripción del Curso](#descripción del curso)
+    * [Competencias](#competencias)
 
 # Programa
 
