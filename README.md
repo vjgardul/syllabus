@@ -120,18 +120,18 @@ A continuación se presentan los contenidos del curso, no necesariamente en el o
  * Árboles de búsqueda
 * Algoritmos
  * Ordenación
-  * Ingenua ( O( n^2 ) )
-  * Inteligente (O(n log n) u O(n))
+      * Ingenua ( O( n^2 ) )
+      * Inteligente (O(n log n) u O(n))
  * Optimización en grafos
-  * Orden Topológico
-  * Cobertura
-  * Búsqueda
-  * Flujo
+      * Orden Topológico
+      * Cobertura
+      * Búsqueda
+      * Flujo
  * Técnicas Algorítmicas
-  * Dividir y conquistar
-  * Algoritmos Codiciosos
-  * Programación Dinámica
-  * Backtracking
+      * Dividir y conquistar
+      * Algoritmos Codiciosos
+      * Programación Dinámica
+      * Backtracking
 
 ## Política de integridad académica
 
