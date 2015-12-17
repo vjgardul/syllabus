@@ -105,6 +105,15 @@ Existirán 4 tareas donde se explorarán problemas complejos, con 2 semanas de t
 
 Todas las semanas se llevarán a cabo ayudantías, donde después de trabajar sobre el conocimiento adquirido en las cátedras, se les hará aplicar el conocimiento en controles cortos de alta dificultad. Dichos controles son opcionales, con premios otorgados a alumnos que contesten de manera perfecta.
 
+-------
+La nota final del curso se calcula de la siguiente manera:
+
+       NE  +  NT 
+NF  =  --------- 
+           2     
+
+
+
 ## Contenidos
 
 A continuación se presentan los contenidos del curso, no necesariamente en el orden en que serán impartidos.
