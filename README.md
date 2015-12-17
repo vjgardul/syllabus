@@ -5,8 +5,16 @@
     * [Equipo](#equipo)
         * [Profesor](#profesor)
         * [Ayudantes](#ayudantes)
-    * [Descripción del Curso](#descripción del curso)
+    * [Descripción del Curso](#descripción-del-curso)
     * [Competencias](#competencias)
+    * [Metodología](#metodología)
+    * [Evaluación](#evaluación)
+        * [Evaluaciones escritas](#evaluaciones-escritas)
+        * [Tareas](#tareas)
+        * [Ayudantías](#ayudantías)
+    * [Contenidos](#contenidos)
+    * [Política de Integridad Académica](#política-de-integridad-académica)
+        
 
 # Programa
 
