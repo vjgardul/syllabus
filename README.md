@@ -110,9 +110,13 @@ La nota final del curso se calcula de la siguiente manera:
 
 ![NF = (NE + NT)/2](http://www.sciweavers.org/upload/Tex2Img_1450325625/eqn.png)
 
-Donde NE es la nota de las evaluaciones escritas, calculada de la siguiente manera:
+Donde **_NT_** es el promedio de las tareas, y **_NE_** la nota de las evaluaciones escritas, calculada de la siguiente manera:
 
-![NE =  \frac{I_1 + I_2 + I_3 + 2*Ex - min(I_1,I_2,I_3,Ex)}{4} ](http://www.sciweavers.org/upload/Tex2Img_1450325906/eqn.png)
+![NE =  \frac{I_1 + I_2 + I_3 + 2*Ex - min(I_1,I_2,I_3,Ex) + DC}{4} ](http://www.sciweavers.org/upload/Tex2Img_1450326078/eqn.png)
+
+Siendo **_DC_** las décimas adicionales obtenidas en los controles de las ayudantías.
+
+En caso de que **_NE_** < 4, **_NF = NE_**
 
 
 
