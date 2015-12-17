@@ -120,7 +120,7 @@ A continuación se presentan los contenidos del curso, no necesariamente en el o
  * Árboles de búsqueda
 * Algoritmos
  * Ordenación
-      * Ingenua ( O( n^2 ) )
+      * Ingenua ( $O(n^{2})$ )
       * Inteligente (O(n log n) u O(n))
  * Optimización en grafos
       * Orden Topológico
