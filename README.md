@@ -74,13 +74,11 @@ Al finalizar este curso los alumnos serán capaces de:
 
 ## Metodología
 
-* Módulos semanales:
- * Cátedra: 2
- * Ayudantía: 1
+Durante el semestre se tendrán un promedio de 2 sesiones de cátedra por semana, junto con una ayudantía al principio de cada semana para verificar lo aprendido la semana anterior.
 
 A través de las cátedras se entregará una enseñanza teórica del curso en la cual se explicarán y discutirán las distintas estructuras y algoritmos, sus aplicaciones, fortalezas y debilidades.
 
-En las ayudantías se trabaja con los alumnos en la resolución de problemas, aplicando los conocimientos adquiridos en la cátedra.
+En las ayudantías se trabajará con los alumnos en la resolución de problemas, aplicando los conocimientos adquiridos en la cátedra.
 
 El curso se encuentra centrado en otorgar feedback constante a los alumnos respecto a su aptitudes y logros.
 
@@ -90,7 +88,7 @@ El curso se basa en 3 ejes fundamentales de evaluación:
 
 ### Evaluaciones escritas
 
-El curso cuenta con 3 interrogaciones y un examen. 
+Habrá 3 interrogaciones y un examen, donde se evaluarán los aspectos más teóricos del contenido.
 
 | Evaluación | Fecha | 
 |:----------|:----------|
@@ -98,7 +96,6 @@ El curso cuenta con 3 interrogaciones y un examen.
 | I2 | - |
 | I3 | ? |
 | Examen | - |
-
 
 ### Tareas
 
