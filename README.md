@@ -120,6 +120,7 @@ A continuación se presentan los contenidos del curso, no necesariamente en el o
  * Árboles de búsqueda
 * Algoritmos
  * Ordenación
+      * Ingenua ( **O(n<sup>2</sup>)** )
  * Optimización en grafos
       * Orden Topológico
       * Cobertura
