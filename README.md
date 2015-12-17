@@ -114,7 +114,7 @@ Dada la nota de evaluaciones escritas **_NE_**:
 
 (Siendo **_DC_** las décimas adicionales obtenidas en los controles de las ayudantías)
 
-Si ![NE < 4, NF = NE](http://www.sciweavers.org/upload/Tex2Img_1450326818/eqn.png)
+Si **_NE < 4, NF = NE_**
 
 de no ser así,
 
