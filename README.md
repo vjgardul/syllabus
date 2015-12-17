@@ -108,11 +108,7 @@ Todas las semanas se llevarán a cabo ayudantías, donde después de trabajar so
 -------
 La nota final del curso se calcula de la siguiente manera:
 
-       NE  +  NT 
-NF  =  --------- 
-           2     
-
-
+-> ![NF = (NE + NT)/2](http://www.sciweavers.org/upload/Tex2Img_1450325625/eqn.png) <-
 
 ## Contenidos
 
