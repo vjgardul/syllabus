@@ -71,9 +71,9 @@ A continuación se presentan los contenidos del curso, no necesariamente en el o
 
 ## Evaluación
 
-El curso consta de una parte teórica, evaluada mediante evaluaciones escritas, y una parte práctica, evaluada mediante tareas de programacion en C.
+El curso consta de una parte teórica, evaluada mediante evaluaciones escritas (también conocidas como interrogaciones), y una parte práctica, evaluada mediante tareas de programacion en C.
 
-### Evaluaciones escritas
+### 
 
 Habrá 2 interrogaciones y un examen, donde se evaluarán los aspectos más teóricos del contenido.
 
@@ -97,12 +97,12 @@ double nota_final()
 {
     /* La nota de cada tarea */
     double T1,T2,T3,T4;
-    /* La nota de cada prueba */
+    /* La nota de cada interrogación */
     double I1,I2,Ex;
 
     /* Promedio de tareas */
     double NT = (T1 + T2 + T3 + T4) / 4;
-    /* Promedio de evaluaciones escritas */
+    /* Promedio de las interrogaciones */
     double NE = (I1 + I2 + 2 * Ex) / 4;
     
     /* Es necesario aprobar las pruebas por separado para aprobar el curso */
@@ -119,6 +119,10 @@ double nota_final()
 ```
 
 ## Política de integridad académica
+
+Este curso se adscribe a la política de integridad académica de la Escuela de Ingeniería y el Departamento de Computación.
+
+---
 
 Los alumnos de la Escuela de Ingeniería de la Pontificia Universidad Católica de Chile deben mantener un comportamiento acorde a la Declaración de Principios de la Universidad.  En particular, se espera que **mantengan altos estándares de honestidad académica**.  Cualquier acto deshonesto o fraude académico está prohibido; los alumnos que incurran en este tipo de acciones se exponen a un Procedimiento Sumario. Es responsabilidad de cada alumno conocer y respetar el documento sobre Integridad Académica publicado por la Dirección de Docencia de la Escuela de Ingeniería (disponible en SIDING).
 
