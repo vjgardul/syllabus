@@ -1,15 +1,25 @@
 # IIC2133 - Estructuras de Datos y Algoritmos
 
+Bienvenido al sitio web del curso de Estructuras de Datos y Algoritmos. En esta página podrás encontrar la información administrativa del curso, junto con las guias de preparación. En el repositorio podrás encontrar código ya preparado por tus ayudantes, junto con los eventuales enunciados de las tareas y las diapositivas de clases.
+
+Asegurate de echar una mirada a la [Wiki](https://github.com/IIC2133-2016-1/syllabus/wiki) del curso, donde estáran todas las guias de como prepararte para poder trabajar en este ramo.
+
 ## Tabla de contenidos
  * [Equipo](#equipo)
      * [Profesor](#profesor)
      * [Ayudantes](#ayudantes)
- * [Descripción del Curso](#descripción-del-curso)
+ * [Acerca del curso](#acerca-del-curso) 
  * [Contenidos](#contenidos)
  * [Evaluación](#evaluación)
      * [Evaluaciones escritas](#evaluaciones-escritas)
      * [Tareas](#tareas)
  * [Política de Integridad Académica](#política-de-integridad-académica)
+
+## Acerca del curso
+
+Este curso enseña a analizar problemas, descomponerlos y elaborar algoritmos que los resuelvan en un tiempo óptimo. Esto se logra mediante la organización de la información en estructuras de datos y el uso de algoritmos capaces de aprovechar dichas estructuras. En particular se enseñan problemas de optimización en grafos, métodos de ordenación, y estructuración de la información en diccionarios.
+
+El curso utiliza el lenguaje de programación C, ya que éste permite trabajar directa y limpiamente con los algoritmos aprendidos. Dado que este lenguaje trabaja en bajo nivel, se puede lograr escribir un programa que resuelva los problemas en tiempo óptimo no solo en la teoría, si no también en la práctica.
      
 ## Equipo
 
@@ -31,11 +41,7 @@
 
 
 
-## Descripción del curso
 
-Este curso enseña a analizar problemas, descomponerlos y elaborar algoritmos que los resuelvan en un tiempo óptimo. Esto se logra mediante la organización de la información en estructuras de datos y el uso de algoritmos capaces de aprovechar dichas estructuras. En particular se enseñan problemas de optimización en grafos, métodos de ordenación, y estructuración de la información en diccionarios.
-
-El curso utiliza el lenguaje de programación C, ya que éste permite trabajar directa y limpiamente con los algoritmos aprendidos. Dado que este lenguaje trabaja en bajo nivel, se puede lograr escribir un programa que resuelva los problemas en tiempo óptimo no solo en la teoría, si no también en la práctica.
 
 ## Contenidos
 
