@@ -83,27 +83,34 @@ Habrá 4 tareas de programación en C, donde deberán resolver un problema compl
 
 ---
 
-La nota final **_NF_** del curso se calcula de la siguiente manera:
-
-Dada la nota de evaluaciones escritas **_NE_**:
-
-![NE =  (I_1 + I_2 + I_3 + 2*Ex - min(I_1,I_2,I_3,Ex) + DC)/4](images/NE.png)
+La nota final del curso se calcula de la siguiente manera:
 
 ```c
 
-if(NE < 4)
+double nota_final()
 {
-   NF = NE;
-}
-else
-{
-   NF = (NE + NT)/2;
-}
+    /* La nota de cada tarea */
+    double T1,T2,T3,T4;
+    /* La nota de cada prueba */
+    double I1,I2,Ex;
 
+    /* Promedio de tareas */
+    double NT = (T1 + T2 + T3 + T4) / 4;
+    /* Promedio de evaluaciones escritas */
+    double NE = (I1 + I2 + 2 * Ex) / 4;
+    
+    /* Es necesario aprobar las pruebas por separado para aprobar el curso */
+    if(NE < 4)
+    {
+       return NE;
+    }
+    else
+    {
+       return (NE + NT) / 2;
+    }
+}
 
 ```
-
-Donde **_NT_** es el promedio lineal de las tareas.
 
 ## Política de integridad académica
 
