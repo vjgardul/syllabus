@@ -1,6 +1,6 @@
 # IIC2133 - Estructuras de Datos y Algoritmos
 
-Bienvenido al sitio web del curso de Estructuras de Datos y Algoritmos. En esta página podrás encontrar la información administrativa del curso, junto con las guias de preparación. En el repositorio podrás encontrar código ya preparado por tus ayudantes, junto con los eventuales enunciados de las tareas y las diapositivas de clases.
+Bienvenido al sitio web del curso de Estructuras de Datos y Algoritmos. En esta página podrás encontrar la información administrativa del curso. En el repositorio podrás encontrar código ya preparado por tus ayudantes, junto con los eventuales enunciados de las tareas y las diapositivas de clases.
 
 Asegurate de echar una mirada a la [Wiki](https://github.com/IIC2133-2016-1/syllabus/wiki) del curso, donde estáran todas las guias de como prepararte para poder trabajar en este ramo.
 
