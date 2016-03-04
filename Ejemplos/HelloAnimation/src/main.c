@@ -46,14 +46,10 @@ static gboolean draw(GtkWidget *widget, cairo_t *cr, gpointer data)
 
 void* animate(void* canvas)
 {
-    struct timespec pause;
-    pause.tv_sec = 0;
-    pause.tv_nsec = 999999;
-
     while(1)
     {
         deltissimo += 0.001;
-        nanosleep(&pause,NULL);
+        usleep(1000);
         gtk_widget_queue_draw(canvas);
     }
 
