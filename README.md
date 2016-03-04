@@ -1,20 +1,16 @@
 # IIC2133 - Estructuras de Datos y Algoritmos
 
 ## Tabla de contenidos
-* [Programa](#programa)
-    * [Equipo](#equipo)
-        * [Profesor](#profesor)
-        * [Ayudantes](#ayudantes)
-    * [Descripción del Curso](#descripción-del-curso)
-    * [Competencias](#competencias)
-    * [Metodología](#metodología)
-    * [Evaluación](#evaluación)
-        * [Evaluaciones escritas](#evaluaciones-escritas)
-        * [Tareas](#tareas)
-        * [Ayudantías](#ayudantías)
-    * [Contenidos](#contenidos)
-    * [Política de Integridad Académica](#política-de-integridad-académica)
-        
+ * [Equipo](#equipo)
+     * [Profesor](#profesor)
+     * [Ayudantes](#ayudantes)
+ * [Descripción del Curso](#descripción-del-curso)
+ * [Contenidos](#contenidos)
+ * [Evaluación](#evaluación)
+     * [Evaluaciones escritas](#evaluaciones-escritas)
+     * [Tareas](#tareas)
+ * [Política de Integridad Académica](#política-de-integridad-académica)
+     
 
 # Programa
 
@@ -32,8 +28,8 @@
 | Nombre                | Github       | Email         |
 |:--------------------- |:-------------|:--------------|
 | Vicente Errázuriz Quiroga | [@Ghoeb](https://www.github.com/Ghoeb) | verrazuriz@uc.cl |
-| Félix Fischer Marqués          | [@felix91gr](https://www.github.com/felix91gr) | ffischer@uc.cl |
-| Belén Saldías Fuentes          | [@bcsaldias](https://www.github.com/bcsaldias) | bcsaldias@uc.cl |
+| Félix Fischer Marqués     | [@felix91gr](https://www.github.com/felix91gr) | ffischer@uc.cl |
+| Belén Saldías Fuentes     | [@bcsaldias](https://www.github.com/bcsaldias) | bcsaldias@uc.cl |
 
 
 
@@ -43,62 +39,6 @@
 Este curso enseña a analizar problemas, descomponerlos y elaborar algoritmos que los resuelvan en un tiempo óptimo. Esto se logra mediante la organización de la información en estructuras de datos y el uso de algoritmos capaces de aprovechar dichas estructuras. En particular se enseñan problemas de optimización en grafos, métodos de ordenación, y estructuración de la información en diccionarios.
 
 El curso utiliza el lenguaje de programación C, ya que éste permite trabajar directa y limpiamente con los algoritmos aprendidos. Dado que este lenguaje trabaja en bajo nivel, se puede lograr escribir un programa que resuelva los problemas en tiempo óptimo no solo en la teoría, si no también en la práctica.
-
-## Competencias
-
-Al finalizar este curso los alumnos serán capaces de:
-
-* Implementar estructuras de datos y algoritmos
-
-## Metodología
-
-Durante el semestre se tendrán un promedio de 2 sesiones de cátedra por semana, junto con una ayudantía al principio de cada semana para verificar lo aprendido la semana anterior.
-
-A través de las cátedras se entregará una enseñanza teórica del curso en la cual se explicarán y discutirán las distintas estructuras y algoritmos, sus aplicaciones, fortalezas y debilidades.
-
-En las ayudantías se trabajará con los alumnos en la resolución de problemas, aplicando los conocimientos adquiridos en la cátedra.
-
-El curso se encuentra centrado en otorgar feedback constante a los alumnos respecto a su aptitudes y logros.
-
-## Evaluación
-
-El curso se basa en 3 ejes fundamentales de evaluación:
-
-### Evaluaciones escritas
-
-Habrá 3 interrogaciones y un examen, donde se evaluarán los aspectos más teóricos del contenido.
-
-| Evaluación | Fecha | 
-|:----------|:----------|
-| I1 | - |
-| I2 | - |
-| I3 | ? |
-| Examen | - |
-
-### Tareas
-
-Existirán 4 tareas donde se explorarán problemas complejos, con 2 semanas de trabajo para cada una. Una semana antes de cada una de ellas se publicarán ejercicios propuestos, diseñados para avanzar en la tarea siguiente.
-
-### Ayudantías 
-
-Todas las semanas se llevarán a cabo ayudantías, donde después de trabajar sobre el conocimiento adquirido en las cátedras, se les hará aplicar el conocimiento en controles cortos de alta dificultad. Dichos controles son opcionales, con décimas otorgadas a alumnos que contesten de manera perfecta.
-
--------
-La nota final **_NF_** del curso se calcula de la siguiente manera:
-
-Dada la nota de evaluaciones escritas **_NE_**:
-
-![NE =  (I_1 + I_2 + I_3 + 2*Ex - min(I_1,I_2,I_3,Ex) + DC)/4](images/NE.png)
-
-(Siendo **_DC_** las décimas adicionales obtenidas en los controles de las ayudantías)
-
-Si **_NE < 4, NF = NE_**
-
-de no ser así,
-
-![NF = (NE + NT)/2](images/NF.png)
-
-Donde **_NT_** es el promedio de las tareas.
 
 ## Contenidos
 
@@ -124,6 +64,49 @@ A continuación se presentan los contenidos del curso, no necesariamente en el o
       * Algoritmos Codiciosos
       * Programación Dinámica
       * Backtracking
+* Strings
+
+## Evaluación
+
+El curso consta de una parte teórica, evaluada mediante evaluaciones escritas, y una parte práctica, evaluada mediante tareas de programacion en C.
+
+### Evaluaciones escritas
+
+Habrá 2 interrogaciones y un examen, donde se evaluarán los aspectos más teóricos del contenido.
+
+| Evaluación | Fecha | 
+|:----------|:----------|
+| I1 | 14 de Abril a las 18:30 |
+| I2 | 9 de Mayo a las 17:00 |
+| Examen | 28 de Junio a las 9:00 |
+
+### Tareas
+
+Habrá 4 tareas de programación en C, donde deberán resolver un problema complejo y analizarlo en un informe escrito. Las fechas serán anunciadas durante el semestre.
+
+---
+
+La nota final **_NF_** del curso se calcula de la siguiente manera:
+
+Dada la nota de evaluaciones escritas **_NE_**:
+
+![NE =  (I_1 + I_2 + I_3 + 2*Ex - min(I_1,I_2,I_3,Ex) + DC)/4](images/NE.png)
+
+```c
+
+if(NE < 4)
+{
+   NF = NE;
+}
+else
+{
+   NF = (NE + NT)/2;
+}
+
+
+```
+
+Donde **_NT_** es el promedio lineal de las tareas.
 
 ## Política de integridad académica
 
