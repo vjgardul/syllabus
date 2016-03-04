@@ -11,9 +11,6 @@
      * [Tareas](#tareas)
  * [Política de Integridad Académica](#política-de-integridad-académica)
      
-
-# Programa
-
 ## Equipo
 
 ### Profesor
