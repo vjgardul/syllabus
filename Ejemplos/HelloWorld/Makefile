@@ -1,4 +1,5 @@
 all: helloworld
+	@echo "Done compiling"
 
 helloworld:
 	@gcc -std=gnu11 src/main.c -o helloworld && \
