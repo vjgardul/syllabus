@@ -25,7 +25,7 @@ El problema correrá con 5 esferas por lado y usando recursión.
 ```
 
 El problema correrá con 10 esferas por lado y usando un loop con stack en lugar de recursión.
-fastCindy no necesita hacer backtracking, por lo que el loop que tiene no usa stacks.
+*fastCindy* no necesita hacer backtracking, por lo que el loop que tiene no usa stacks.
 
 El *watcher* es un programa que permite visualizar el problema con esferas de color en lugar de la consola. Para usarlo es necesario entregarle el output de uno de los *cindy*. Para hacer esto, usamos *pipelines*:
 
