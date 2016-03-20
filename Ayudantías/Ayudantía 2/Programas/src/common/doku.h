@@ -28,11 +28,11 @@ struct doku_cell
     /** Indice de la fila en la que está esta celda */
     uint8_t y;
 
-    /* Cantidad de vecinos asignados. Utilizado para la heurística */
-    uint16_t assigned_neighbours;
+    /* Cantidad de compañeros asignados. Utilizado para la heurística */
+    uint16_t assigned_peers;
 
-    /* Arreglo con los vecinos. Utilizado para acelerar las heurísticas */
-    struct doku_cell* neighbours;
+    /* Arreglo con los compañeros. Utilizado para acelerar las heurísticas */
+    struct doku_cell** peers;
 };
 typedef struct doku_cell Cell;
 

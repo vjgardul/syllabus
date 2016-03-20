@@ -7,10 +7,10 @@ int priority(nDoku* doku, Cell* cell)
     int n = doku -> n;
 
     /* Mientras menos opciones tiene, mas prioridad tiene */
-    int priority = (n * n - cell -> count) * neighbours;
+    int priority = (n * n - cell -> count) * peer_count;
 
     /* En caso de empate, el que tenga más vecinos asignados gana */
-    // priority += cell -> assigned_neighbours;
+    priority += cell -> assigned_peers;
 
     return priority;
 }
@@ -75,8 +75,6 @@ bool compute_options(nDoku* doku, Cell* cell)
 /* Retorna false si el puzzle queda en un estado inresolvible */
 bool assign_next(nDoku* doku, Cell* cell, Stack* stack)
 {
-    int n = doku -> n;
-
     /* Asignamos el valor */
     cell -> value = cell -> options[--cell -> count];
     stack_push(stack, cell);
@@ -85,68 +83,100 @@ bool assign_next(nDoku* doku, Cell* cell, Stack* stack)
     if(step)
         printf("%d %d %d\n", cell -> x, cell -> y, cell -> value);
 
-    /* Revisamos la columna */
-    for(int j = 0; j < n*n;j++)
+    /* Revisamos que el puzzle no sea inresolvible */
+    for(int i = 0; i < peer_count; i++)
     {
-        Cell* pal = doku -> grid[cell -> x][j];
-        /* Solo si no tiene valor aun */
-        if(pal -> value == UNASSIGNED)
+        Cell* peer = cell -> peers[i];
+        if(peer -> value == UNASSIGNED)
         {
-            /* Si no tiene opciones, entonces el puzzle es inresolvible! */
-            if(!compute_options(doku, pal)) return false;
+            /* Si no tiene opciones entonces el puzzle es inresolvible */
+            if(!compute_options(doku, peer)) return false;
         }
     }
-    /* Revisamos la fila */
-    for(int i = 0; i < n*n;i++)
+
+    /* Ahora que sabemos que la decision es definitiva */
+    for(int i = 0; i < peer_count; i++)
     {
-        Cell* pal = doku -> grid[i][cell -> y];
-        /* Solo si no tiene valor aun */
-        if(pal -> value == UNASSIGNED)
-        {
-            /* Si no tiene opciones, entonces el puzzle es inresolvible! */
-            if(!compute_options(doku, pal)) return false;
-        }
+        /* Le decimos a los compañeros que ahora tienen uno mas asignado */
+        cell -> peers[i] -> assigned_peers++;
     }
-    /* Revisamos el cuadrante */
-    int boxi = cell -> x / n;
-    int boxj = cell -> y / n;
-    for (int i = 0; i < n; i++)
-    {
-        for (int j = 0; j < n; j++)
-        {
-            Cell* pal = doku -> grid[boxi*n + i][boxj*n + j];
-            /* Solo si no tiene valor aun */
-            if(pal -> value == UNASSIGNED)
-            {
-                /* Si no tiene opciones entonces el puzzle es inresolvible */
-                if(!compute_options(doku, pal)) return false;
-            }
-        }
-    }
+
+
     return true;
 }
 
 Cell* choice_undo(Stack* stack)
 {
-    Cell* ret = stack_pop(stack);
-    ret -> value = UNASSIGNED;
+    Cell* cell = stack_pop(stack);
+    cell -> value = UNASSIGNED;
     /* Si estamos haciendo seguimiento, comunicamos la jugada */
     if(step)
-        printf("%d %d %d\n", ret -> x, ret -> y, ret -> value);
+        printf("%d %d %d\n", cell -> x, cell -> y, cell -> value);
 
+
+    for(int i = 0; i < peer_count; i++)
+    {
+        /* Le decimos a los compañeros que ahora tienen uno mas asignado */
+        cell -> peers[i] -> assigned_peers--;
+    }
     undo_count++;
-    return ret;
+    return cell;
 }
 
+/* Inicializa el sistema de vecinos */
 void solver_init(nDoku* doku)
 {
-    /* Inicializamos los vecinos */
     int n = doku -> n;
+
+    /* Cada celda tendra acceso directo a sus vecinos */
+    /* Es decir, con las que comparte fila, cuadrante o columna */
     for(int i = 0; i < n*n; i++)
     {
         for(int j = 0; j < n*n; j++)
         {
-            doku -> grid[i][j] -> neighbours = malloc(sizeof(Cell) * neighbours);
+            Cell* cell = doku -> grid[i][j];
+            cell -> peers = malloc(sizeof(Cell*) * peer_count);
+
+            int peer_count = 0;
+
+            /* Agregamos los de la columna */
+            for(int j = 0; j < n*n;j++)
+            {
+                /* No debe agregarse a si mismo */
+                if(j == cell -> y) continue;
+
+                Cell* peer = doku -> grid[cell -> x][j];
+
+                cell -> peers[peer_count++] = peer;
+            }
+            /* Agregamos a los de la fila */
+            for(int i = 0; i < n*n;i++)
+            {
+                /* No debe agregarse a si mismo */
+                if(i == cell -> x) continue;
+
+                Cell* peer = doku -> grid[i][cell -> y];
+
+                cell -> peers[peer_count++] = peer;
+            }
+            /* Agregamos los del cuadrante */
+            int boxi = cell -> x / n;
+            int boxj = cell -> y / n;
+            for (int i = 0; i < n; i++)
+            {
+                /* Los de la misma columa ya fueron agregados */
+                if(boxi*n + i == cell -> x) continue;
+
+                for (int j = 0; j < n; j++)
+                {
+                    /* Los de la misma fila ya fueron agregados */
+                    if(boxj*n + j == cell -> y) continue;
+
+                    Cell* peer = doku -> grid[boxi*n + i][boxj*n + j];
+
+                    cell -> peers[peer_count++] = peer;
+                }
+            }
         }
     }
 }
@@ -154,6 +184,8 @@ void solver_init(nDoku* doku)
 /* Efectúa backtracking sobre el puzzle para encontrar la solucion */
 bool solve_n_doku(nDoku* doku, Stack* stack)
 {
+    solver_init(doku);
+
     do
     {
         /* Obtenemos la siguiente celda a asignar */

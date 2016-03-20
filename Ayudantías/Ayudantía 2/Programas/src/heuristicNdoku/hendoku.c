@@ -69,7 +69,7 @@ int main(int argc, char** argv)
     if(!param_check(argc, argv)) return 2;
 
     /* Calculamos la cantidad de vecinos de cada nodo */
-    neighbours = 3*n*n - 2*n - 1;
+    peer_count = 3*n*n - 2*n - 1;
 
     /* Comunicamos el n escogido */
     printf("%d\n", n);

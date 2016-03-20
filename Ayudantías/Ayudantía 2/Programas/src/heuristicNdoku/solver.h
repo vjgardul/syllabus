@@ -13,8 +13,9 @@ unsigned int undo_count;
 /* Indica que se debe notificar cada paso del algoritmo */
 bool step;
 
-/* La cantidad de vecinos de cada nodo */
-int neighbours;
+/* La cantidad de compañeros de cada celda */
+/* Es decir, con las que comparte fila, columna o cuadrante */
+int peer_count;
 
 /* Intenta darle valor a una celda y resolver el puzzle resultante */
 /* Retorna true si el puzzle tiene solucion, false si no */
