@@ -15,44 +15,6 @@ int priority(nDoku* doku, Cell* cell)
     return priority;
 }
 
-/* Entrega la primera celda sin asignar que encuentre */
-Cell* find_unnasigned_location(nDoku* doku)
-{
-    int n = doku -> n;
-
-    Cell* chosen = NULL;
-
-    int chosen_score = 0;
-
-    for(int i = 0; i < n*n; i++)
-    {
-        for(int j = 0; j < n*n; j++)
-        {
-            /* Si la celda esta vacia es candidato */
-            if(doku -> grid[i][j] -> value == UNASSIGNED)
-            {
-                if(chosen == NULL)
-                {
-                    chosen = doku -> grid[i][j];
-                    chosen_score = priority(doku, chosen);
-                }
-                else
-                {
-                    int candidate_score = priority(doku, doku -> grid[i][j]);
-                    if(candidate_score > chosen_score)
-                    {
-                        chosen = doku -> grid[i][j];
-                        chosen_score = candidate_score;
-                    }
-                }
-            }
-        }
-    }
-    /* Si no quedan celdas vacias */
-    return chosen;
-}
-
-
 /* Chequea si es una jugada valida asignar el valor a esta celda */
 bool local_is_safe(Cell* cell, int val)
 {
@@ -91,7 +53,7 @@ bool compute_options(nDoku* doku, Cell* cell)
 
 /* Asigna el siguiente valor en la lista de opciones de la celda */
 /* Retorna false si el puzzle queda en un estado inresolvible */
-bool assign_next(nDoku* doku, Cell* cell, Stack* stack)
+bool assign_next(nDoku* doku, Cell* cell, Stack* stack, Heap* heap)
 {
     /* Asignamos el valor */
     cell -> value = cell -> options[--cell -> count];
@@ -99,7 +61,9 @@ bool assign_next(nDoku* doku, Cell* cell, Stack* stack)
 
     /* Si estamos haciendo seguimiento, comunicamos la jugada */
     if(step)
+    {
         printf("%d %d %d\n", cell -> x, cell -> y, cell -> value);
+    }
 
     /* Revisamos que el puzzle no sea inresolvible */
     for(int i = 0; i < peer_count; i++)
@@ -115,36 +79,67 @@ bool assign_next(nDoku* doku, Cell* cell, Stack* stack)
     /* Ahora que sabemos que la decision es definitiva */
     for(int i = 0; i < peer_count; i++)
     {
+        Cell* peer = cell -> peers[i];
+
         /* Le decimos a los compañeros que ahora tienen uno mas asignado */
-        cell -> peers[i] -> assigned_peers++;
+        peer -> assigned_peers++;
+
+        if(peer -> value == UNASSIGNED)
+        {
+            /* Calculamos su prioridad */
+            int score = priority(doku,peer);
+
+            /* Actualizamos su posicion en el heap */
+            heap_update_key(heap, *(peer -> heapindex), score);
+        }
+
     }
 
 
     return true;
 }
 
-Cell* choice_undo(Stack* stack)
+Cell* choice_undo(nDoku* doku, Stack* stack, Heap* heap)
 {
     Cell* cell = stack_pop(stack);
     cell -> value = UNASSIGNED;
     /* Si estamos haciendo seguimiento, comunicamos la jugada */
     if(step)
+    {
         printf("%d %d %d\n", cell -> x, cell -> y, cell -> value);
+    }
 
 
     for(int i = 0; i < peer_count; i++)
     {
-        /* Le decimos a los compañeros que ahora tienen uno mas asignado */
-        cell -> peers[i] -> assigned_peers--;
+        Cell* peer = cell -> peers[i];
+
+        /* Le decimos a los compañeros que ahora tienen uno menos asignado */
+        peer -> assigned_peers--;
+
+        /* Recalculamos sus opciones */
+        if(peer -> value == UNASSIGNED)
+        {
+            /* Ahora que tenemos los peers, precomputamos las opciones */
+            compute_options(doku, peer);
+
+            /* Calculamos su prioridad */
+            int score = priority(doku,peer);
+
+            /* Actualizamos su posicion en el heap */
+            heap_update_key(heap, *(peer -> heapindex), score);
+        }
     }
     undo_count++;
     return cell;
 }
 
 /* Inicializa el sistema de vecinos */
-void solver_init(nDoku* doku)
+Heap* solver_init(nDoku* doku)
 {
     int n = doku -> n;
+
+    Heap* heap = heap_init(n*n*n*n);
 
     /* Cada celda tendra acceso directo a sus vecinos */
     /* Es decir, con las que comparte fila, cuadrante o columna */
@@ -195,52 +190,94 @@ void solver_init(nDoku* doku)
                     cell -> peers[peer_count++] = peer;
                 }
             }
+
+            if(cell -> value == UNASSIGNED)
+            {
+                /* Ahora que tenemos los peers, precomputamos las opciones */
+                compute_options(doku, cell);
+
+                /* Calculamos su prioridad */
+                int score = priority(doku,cell);
+
+                /* Y lo insertamos al heap segun su prioridad */
+                /* Asegurandonos de almacenar el indice donde quedó */
+                cell -> heapindex = heap_insert(heap, cell, score);
+            }
         }
     }
+
+    return heap;
 }
 
 /* Efectúa backtracking sobre el puzzle para encontrar la solucion */
 bool solve_n_doku(nDoku* doku, Stack* stack)
 {
-    solver_init(doku);
+    /* El heap va a tener las celdas ordenadas por prioridad */
+    Heap* heap = solver_init(doku);
 
     do
     {
         /* Obtenemos la siguiente celda a asignar */
-        Cell* next = find_unnasigned_location(doku);
+        Cell* next = heap_extract(heap);
 
         /* Si no quedan celdas por asignar, ya terminamos */
-        if(!next) return true;
+        if(!next)
+        {
+            heap_destroy(heap);
+            return true;
+        }
+        else
+        {
+            /* Marcamos que ya no está en el heap */
+            next -> heapindex = NULL;
+        }
 
         /* Si la celda no tiene opciones o la opcion tomada no es valida */
-        if(!compute_options(doku,next) ||
-           !assign_next(doku, next, stack))
+        /* Aqui las opciones ya vienen calculadas */
+        if(next -> count == 0 || !assign_next(doku, next, stack, heap))
+        // if(!compute_options(doku, next) || !assign_next(doku, next, stack, heap))
         {
-            do
+            while(true)
             {
                 /* Recuperamos la celda que tomo la ultima desicion */
-                do
+                while(true)
                 {
                     /* Si no nos queda a donde volver */
                     if(stack_is_empty(stack))
                     {
+                        heap_destroy(heap);
                         /* El puzzle no se puede resolver */
                         return false;
                     }
                     /* Volvemos al nodo anterior */
-                    next = choice_undo(stack);
+                    next = choice_undo(doku, stack, heap);
 
-                /* Si a esa celda no le quedan opciones */
-                /* volvemos a retroceder */
-                } while(next -> count == 0);
+                    /* Si aun le quedan opciones, podemos probarlas */
+                    if(next -> count > 0)
+                    {
+                        break;
+                    }
+                    /* Si a esa celda no le quedan opciones */
+                    /* volvemos a retroceder */
+                    else
+                    {
+                        /* Insertamos el nodo al final de la cola */
+                        next -> heapindex = heap_insert(heap, next, 0);
+                    }
+                }
 
-            /* Retrocedemos hasta poder tomar una opcion valida */
-            } while(!assign_next(doku, next, stack));
+                /* Si es una asignacion valida, podemos pasar al siguiente */
+                if(assign_next(doku, next, stack, heap))
+                {
+                    break;
+                }
+            }
         }
 
     /* Cuando el stack esté vacio, significa que ya probamos todo */
     } while(!stack_is_empty(stack));
 
     /* Si ya probamos todo, entonces no era resolvible */
+    heap_destroy(heap);
     return false;
 }

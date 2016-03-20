@@ -19,8 +19,6 @@ struct doku_cell
     /** Cuantas opciones tiene */
     uint8_t count;
 
-    /** Indice del heap donde está esta celda */
-    size_t* heapindex;
 
     /** Indice de la columna en la que está esta celda */
     uint8_t x;
@@ -33,6 +31,9 @@ struct doku_cell
 
     /* Arreglo con los compañeros. Utilizado para acelerar las heurísticas */
     struct doku_cell** peers;
+
+    /** Puntero al indice del heap donde está esta celda */
+    size_t* heapindex;
 };
 typedef struct doku_cell Cell;
 

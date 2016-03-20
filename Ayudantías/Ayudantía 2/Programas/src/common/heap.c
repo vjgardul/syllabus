@@ -1,7 +1,6 @@
 #include "heap.h"
 #include <stdio.h>
 #include <limits.h>
-
 /*#########################################################################*/
 /*                          Operaciones Internas                           */
 /*#########################################################################*/
@@ -30,7 +29,7 @@ void heap_sift_down(Heap* heap, size_t index)
     /** El índice actual del nodo */
     size_t node_i = index;
 
-    /* Repetimos la operación hasta que se indique lo contrario */
+    /* Llevamos a cabo la operación hasta que se indique lo contrario */
     while(true)
     {
         /* Los indices de ambos hijos del nodo */
