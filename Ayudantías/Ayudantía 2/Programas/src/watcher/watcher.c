@@ -10,14 +10,18 @@
 #include <string.h>
 #include <stdint.h>
 
-/* La constante SIZE */
-#define SIZE 24
+/* Tamaño de la ventana */
+#define WINDOW 512.0
+
 
 /* Se considera que una celda no esta asignada si vale 0 */
 #define UNASSIGNED 0
 
 /* Indica el tamaño de las celdas */
 static double cell_size = 1;
+
+/* El tamaño de la fuente */
+double SIZE;
 
 /** El tablero será de (nxn)x(nxn) */
 static int n;
@@ -51,7 +55,7 @@ static gboolean draw(GtkWidget* widget, cairo_t* cr, gpointer data)
     cairo_paint(cr);
 
     /* Dibujamos lineas claras y delgadas */
-    cairo_set_line_width(cr,1);
+    cairo_set_line_width(cr,SIZE/32);
     cairo_set_source_rgb(cr,0.6,0.6,0.6);
 
     /* Dibuja la grilla clara del sudoku */
@@ -72,7 +76,7 @@ static gboolean draw(GtkWidget* widget, cairo_t* cr, gpointer data)
     }
 
     /* Dibujamos lineas grueasa y oscuras */
-    cairo_set_line_width(cr,2);
+    cairo_set_line_width(cr, SIZE/16);
     cairo_set_source_rgb(cr,0,0,0);
 
     for (int i = 0; i < n; i++)
@@ -128,7 +132,6 @@ int main (int argc, char *argv[])
 
     int i,j,v;
 
-
     /* Leemos el estado inicial del tablero */
     for(int k = 0; k < n*n*n*n; k++)
     {
@@ -140,9 +143,6 @@ int main (int argc, char *argv[])
         grid[i][j] = v;
     }
 
-
-
-
     /* Indicamos que hay que actualizar cada cierta cantidad de ticks */
     int refreshInterval = argc > 1 ? atoi(argv[1]) : 10;
 
@@ -153,9 +153,13 @@ int main (int argc, char *argv[])
     gtk_init (0, NULL);
 
     /* Inicializamos la ventana */
-    GtkWidget* window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+    GtkWidget* window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
     /* Linkeamos los eventos de la ventana */
     g_signal_connect(window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
+    /* Asignamos el nombre de la ventana */
+    char windowname[32];
+    sprintf(windowname, "WATCH %d-DOKU %d X %d",n,n*n,n*n);
+    gtk_window_set_title(GTK_WINDOW(window),windowname);
 
     /* Inicializamos el canvas */
     GtkWidget* drawingArea = gtk_drawing_area_new();
@@ -163,15 +167,21 @@ int main (int argc, char *argv[])
     g_signal_connect(drawingArea, "draw", G_CALLBACK(draw),  NULL);
 
     int max = n*n;
+    double x = 1;
     while(max > 10)
     {
-        cell_size *= 1.5;
+        x *= 1.5;
         max /= 10;
     }
-    cell_size *= SIZE;
+    // cell_size = SIZE * x;
+
+    cell_size = WINDOW / (n*n);
+
+    SIZE = cell_size / x;
 
     /* Indicamos el tamaño deseado para el canvas */
-    gtk_widget_set_size_request (drawingArea, cell_size*n*n, cell_size*n*n);
+    // gtk_widget_set_size_request (drawingArea, cell_size*n*n, cell_size*n*n);
+    gtk_widget_set_size_request (drawingArea, WINDOW, WINDOW);
 
     /* Conectamos el canvas a la ventana */
     gtk_container_add(GTK_CONTAINER(window), drawingArea);

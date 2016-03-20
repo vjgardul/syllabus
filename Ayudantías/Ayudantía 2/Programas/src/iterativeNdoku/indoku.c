@@ -80,11 +80,18 @@ int main(int argc, char** argv)
     /* Seteamos el contador en 0 */
     undo_count = 0;
 
+    /* TODO deberia ser un parametro */
+    /* Indicamos que no queremos podar */
+    poda = true;
+
     /* Medimos el tiempo */
     clock_t start = clock();
 
+    /* El stack que guardará los pasos */
+    Stack* steps = stack_init(n*n*n*n);
+
     /* Intentamos resolver el n-doku */
-    if(solve_n_doku(doku))
+    if(solve_n_doku(doku, steps))
     {
         double time_used = ((double) (clock() - start)) / CLOCKS_PER_SEC;
         /* Imprimimos las estadisticas */
@@ -96,6 +103,8 @@ int main(int argc, char** argv)
         printf("-1\n");
         /* Liberamos la memoria */
         n_doku_destroy(doku);
+        /* No nos interesan los pasos más que el estado final */
+        stack_destroy(steps);
         /* El programa terminó satisfactoriamente */
         return 0;
     }
@@ -107,6 +116,7 @@ int main(int argc, char** argv)
         printf("-1\n");
         /* Liberamos la memoria */
         n_doku_destroy(doku);
+        stack_destroy(steps);
         /* El programa terminó con errores */
         return 1;
     }

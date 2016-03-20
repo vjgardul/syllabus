@@ -4,7 +4,10 @@
 /*#########################################################################*/
 /*                            Max-heap Binario                             */
 /*                                                                         */
-/* Módulo encargado del Input / Output del grafo                           */
+/* Heap que permite algunas operaciones en O(1) al entregar el puntero al  */
+/* índice donde queda un elemento al guardarlo, asi aunque se mueva dentro */
+/* del heap, siempre podrás tener el indice del objeto.                    */
+/*                                                                         */
 /* Por Vicente Errázuriz                                                   */
 /*#########################################################################*/
 
@@ -26,8 +29,6 @@ struct heap_node
 };
 /** El nodo del heap. contiene al elemento, su key y su índice */
 typedef struct heap_node HeapNode;
-
-
 
 /** Representa un max-heap binario */
 struct max_bin_heap
