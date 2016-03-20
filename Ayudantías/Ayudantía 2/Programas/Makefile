@@ -27,7 +27,7 @@ GTKFLAGS=`pkg-config --cflags --libs gtk+-3.0`
 LIB=-lm
 
 # Los programas de los que esta makefile se hace cargo
-PROGRAMS=ndoku watcher iterativeNdoku
+PROGRAMS=ndoku watcher iterativeNdoku heuristicNdoku
 
 # Todos los .h del proyecto
 DEPS=$(foreach i, common $(PROGRAMS), $(wildcard src/$(i)/*.h))

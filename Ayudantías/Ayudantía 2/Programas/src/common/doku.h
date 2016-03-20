@@ -2,6 +2,7 @@
 #define A2_DOKU_H
 
 #include <stdlib.h>
+#include <stdint.h>
 
 /* Se considera que una celda no esta asignada si vale 0 */
 #define UNASSIGNED 0
@@ -10,22 +11,28 @@
 struct doku_cell
 {
     /** Valor actual de la celda */
-    int value;
+    uint8_t value;
 
     /** Arreglo con los posibles valores */
-    int* options;
+    uint8_t* options;
 
     /** Cuantas opciones tiene */
-    int count;
+    uint8_t count;
 
     /** Indice del heap donde está esta celda */
     size_t* heapindex;
 
     /** Indice de la columna en la que está esta celda */
-    int x;
+    uint8_t x;
 
     /** Indice de la fila en la que está esta celda */
-    int y;
+    uint8_t y;
+
+    /* Cantidad de vecinos asignados. Utilizado para la heurística */
+    uint16_t assigned_neighbours;
+
+    /* Arreglo con los vecinos. Utilizado para acelerar las heurísticas */
+    struct doku_cell* neighbours;
 };
 typedef struct doku_cell Cell;
 
@@ -36,7 +43,7 @@ struct doku_grid
     Cell*** grid;
 
     /** El orden del n-doku. El tablero tendrá tamaño n² x n² */
-    int n;
+    uint8_t n;
 };
 typedef struct doku_grid nDoku;
 

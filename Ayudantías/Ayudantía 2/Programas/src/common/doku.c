@@ -22,12 +22,17 @@ Cell* cell_init(int n, int x, int y)
     cell -> x = x;
     cell -> y = y;
 
+    cell -> assigned_neighbours = 0;
+
+    cell -> neighbours = NULL;
+
     return cell;
 }
 
 /* Libera los recursos asociados a esa celda */
 void  cell_destroy (Cell* cell)
 {
+    free(cell -> neighbours);
     free(cell -> options);
     free(cell);
 }
