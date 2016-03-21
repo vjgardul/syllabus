@@ -28,7 +28,7 @@ Ejecuta el solver con heurísticas para resolver un sudoku tradicional de 9x9 e 
 ./ndoku 5 fast
 ```
 
-Ejecuta el solver básico con un n-doku de 25x25 y espera a encontrar la solucion para imprimirla.
+Ejecuta el solver básico con un n-doku de 25x25 y espera a encontrar la solución para imprimirla.
 
 ### Watcher
 
