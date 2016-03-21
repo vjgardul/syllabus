@@ -21,19 +21,25 @@ Cell* find_unnasigned_location(nDoku* doku)
     return NULL;
 }
 
+
 /* Calcula todas las opciones de la celda. Retorna false si no tiene */
 bool compute_options(nDoku* doku, Cell* cell)
 {
     /* Reseteamos el contador */
     cell -> count = 0;
     int n = doku -> n;
-    /* Recorremos los valores, de arriba hacia abajo */
-    /* Ya que usaremos el arreglo como un stack */
-    for(int val = n*n; val > 0; val--)
+
+    /* Generamos el dominio para esa celda */
+    int domain[n*n];
+    for(int i = 0; i < n*n; i++) domain[i] = i + 1;
+    shuffle(domain, n*n, cell);
+
+    /* Recorremos los valores */
+    for(int i = 0; i < n*n; i++)
     {
-        if(is_safe(doku, cell -> x, cell -> y, val))
+        if(is_safe(doku, cell -> x, cell -> y, domain[i]))
         {
-            cell -> options[cell -> count++] = val;
+            cell -> options[cell -> count++] = domain[i];
         }
     }
     /* Retorna true si tenemos alguna opcion. False si no */
@@ -54,9 +60,6 @@ bool assign_next(nDoku* doku, Cell* cell, Stack* stack)
     if(step)
         printf("%d %d %d\n", cell -> x, cell -> y, cell -> value);
 
-
-    /* Si no queremos podar, entonces seguimos nomas */
-    if(poda == false) return true;
 
     /* Revisamos la columna */
     for(int j = 0; j < n*n;j++)

@@ -49,3 +49,21 @@ bool is_safe(nDoku* doku, int i, int j, int num)
            !used_in_col(doku, i, num) &&
            !used_in_box(doku, i/n, j/n, num);
 }
+
+/* Para darle randomicidad */
+void shuffle(int *array, size_t n, Cell* cell)
+{
+    srand(cell -> x + cell -> y*n*n + 12);
+    // srand(cell -> x + cell -> y*n*n + 10);
+    if (n > 1)
+    {
+        size_t i;
+        for (i = 0; i < n - 1; i++)
+        {
+          size_t j = i + rand() / (RAND_MAX / (n - i) + 1);
+          int t = array[j];
+          array[j] = array[i];
+          array[i] = t;
+        }
+    }
+}
