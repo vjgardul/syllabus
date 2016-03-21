@@ -88,7 +88,8 @@ int main(int argc, char** argv)
     {
         double time_used = ((double) (clock() - start)) / CLOCKS_PER_SEC;
         /* Imprimimos las estadisticas */
-        fprintf(stderr, "%d-doku resuelto en %lf segundos,", n, time_used);
+        fprintf(stderr, "%s ha resuelto ", argv[0]);
+        fprintf(stderr, "%d-doku en %lf segundos,", n, time_used);
         fprintf(stderr, " volviendo %u veces\n", undo_count);
         /* Comunicamos el valor de cada celda en el estado solucion */
         n_doku_print(doku);

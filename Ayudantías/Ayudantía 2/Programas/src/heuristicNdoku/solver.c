@@ -15,7 +15,7 @@ int priority(nDoku* doku, Cell* cell)
     return priority;
 }
 
-/* Entrega la primera celda sin asignar que encuentre */
+/* Entrega la mejor celda sin asignar que encuentre */
 Cell* find_unnasigned_location(nDoku* doku)
 {
     int n = doku -> n;
@@ -31,13 +31,16 @@ Cell* find_unnasigned_location(nDoku* doku)
             /* Si la celda esta vacia es candidato */
             if(doku -> grid[i][j] -> value == UNASSIGNED)
             {
+                /* Si aun no hemos escogido */
                 if(chosen == NULL)
                 {
                     chosen = doku -> grid[i][j];
                     chosen_score = priority(doku, chosen);
                 }
+                /* Si ya tenemos una opcion */
                 else
                 {
+                    /* La cambiamos solo si esta es mejor */
                     int candidate_score = priority(doku, doku -> grid[i][j]);
                     if(candidate_score > chosen_score)
                     {
@@ -68,26 +71,31 @@ bool local_is_safe(Cell* cell, int val)
     return true;
 }
 
-
 /* Calcula todas las opciones de la celda. Retorna false si no tiene */
 bool compute_options(nDoku* doku, Cell* cell)
 {
     /* Reseteamos el contador */
     cell -> count = 0;
     int n = doku -> n;
-    /* Recorremos los valores, de arriba hacia abajo */
-    /* Ya que usaremos el arreglo como un stack */
-    for(int val = n*n; val > 0; val--)
+
+    /* Generamos el dominio para esa celda */
+    int domain[n*n];
+    for(int i = 0; i < n*n; i++) domain[i] = i + 1;
+    shuffle(domain, n*n, cell);
+
+    /* Recorremos los valores */
+    for(int i = 0; i < n*n; i++)
     {
         /* Revisa si la jugada es valida usando el arreglo de peers */
-        if(local_is_safe(cell, val))
+        if(local_is_safe(cell, domain[i]))
         {
-            cell -> options[cell -> count++] = val;
+            cell -> options[cell -> count++] = domain[i];
         }
     }
     /* Retorna true si tenemos alguna opcion. False si no */
     return cell -> count > 0;
 }
+
 
 /* Asigna el siguiente valor en la lista de opciones de la celda */
 /* Retorna false si el puzzle queda en un estado inresolvible */
@@ -123,7 +131,7 @@ bool assign_next(nDoku* doku, Cell* cell, Stack* stack)
     return true;
 }
 
-Cell* choice_undo(Stack* stack)
+Cell* choice_undo(nDoku* doku, Stack* stack)
 {
     Cell* cell = stack_pop(stack);
     cell -> value = UNASSIGNED;
@@ -134,8 +142,17 @@ Cell* choice_undo(Stack* stack)
 
     for(int i = 0; i < peer_count; i++)
     {
+        Cell* peer = cell -> peers[i];
+
         /* Le decimos a los compañeros que ahora tienen uno mas asignado */
         cell -> peers[i] -> assigned_peers--;
+
+        /* Recalculamos las opciones del compañero */
+        if(peer -> value == UNASSIGNED)
+        {
+            compute_options(doku, peer);
+        }
+
     }
     undo_count++;
     return cell;
@@ -195,6 +212,12 @@ void solver_init(nDoku* doku)
                     cell -> peers[peer_count++] = peer;
                 }
             }
+
+            if(cell -> value == UNASSIGNED)
+            {
+                /* Ahora que tenemos los peers, precomputamos las opciones */
+                compute_options(doku, cell);
+            }
         }
     }
 }
@@ -228,7 +251,7 @@ bool solve_n_doku(nDoku* doku, Stack* stack)
                         return false;
                     }
                     /* Volvemos al nodo anterior */
-                    next = choice_undo(stack);
+                    next = choice_undo(doku,stack);
 
                 /* Si a esa celda no le quedan opciones */
                 /* volvemos a retroceder */

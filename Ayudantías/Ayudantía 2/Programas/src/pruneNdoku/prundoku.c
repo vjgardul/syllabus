@@ -80,10 +80,6 @@ int main(int argc, char** argv)
     /* Seteamos el contador en 0 */
     undo_count = 0;
 
-    /* TODO deberia ser un parametro */
-    /* Indicamos que no queremos podar */
-    poda = true;
-
     /* Medimos el tiempo */
     clock_t start = clock();
 
@@ -95,10 +91,15 @@ int main(int argc, char** argv)
     {
         double time_used = ((double) (clock() - start)) / CLOCKS_PER_SEC;
         /* Imprimimos las estadisticas */
-        fprintf(stderr, "%d-doku resuelto en %lf segundos,", n, time_used);
+        fprintf(stderr, "%s ha resuelto ", argv[0]);
+        fprintf(stderr, "%d-doku en %lf segundos,", n, time_used);
         fprintf(stderr, " volviendo %u veces\n", undo_count);
         /* Comunicamos el valor de cada celda en el estado solucion */
-        n_doku_print(doku);
+        while(!stack_is_empty(steps))
+        {
+            Cell* cell = stack_pop(steps);
+            printf("%d %d %d\n", cell -> x, cell -> y, cell -> value);
+        }
         /* Comunicamos que terminó el programa. El Watcher entenderá */
         printf("-1\n");
         /* Liberamos la memoria */

@@ -12,6 +12,10 @@ int priority(nDoku* doku, Cell* cell)
     /* En caso de empate, el que tenga más vecinos asignados gana */
     priority += cell -> assigned_peers;
 
+    /* Para preservar el orden en el que los recorre el otro */
+    // priority = priority*n*n*n*n;
+    // priority += (n*n - 1 - cell -> x) * n*n + (n*n - 1 - cell -> y);
+
     return priority;
 }
 
@@ -30,21 +34,25 @@ bool local_is_safe(Cell* cell, int val)
     return true;
 }
 
-
 /* Calcula todas las opciones de la celda. Retorna false si no tiene */
 bool compute_options(nDoku* doku, Cell* cell)
 {
     /* Reseteamos el contador */
     cell -> count = 0;
     int n = doku -> n;
-    /* Recorremos los valores, de arriba hacia abajo */
-    /* Ya que usaremos el arreglo como un stack */
-    for(int val = n*n; val > 0; val--)
+
+    /* Generamos el dominio para esa celda */
+    int domain[n*n];
+    for(int i = 0; i < n*n; i++) domain[i] = i + 1;
+    shuffle(domain, n*n, cell);
+
+    /* Recorremos los valores */
+    for(int i = 0; i < n*n; i++)
     {
         /* Revisa si la jugada es valida usando el arreglo de peers */
-        if(local_is_safe(cell, val))
+        if(local_is_safe(cell, domain[i]))
         {
-            cell -> options[cell -> count++] = val;
+            cell -> options[cell -> count++] = domain[i];
         }
     }
     /* Retorna true si tenemos alguna opcion. False si no */
@@ -109,7 +117,7 @@ Cell* choice_undo(nDoku* doku, Stack* stack, Heap* heap)
         printf("%d %d %d\n", cell -> x, cell -> y, cell -> value);
     }
 
-
+    /* Avisamos de las cosas a los compañeros */
     for(int i = 0; i < peer_count; i++)
     {
         Cell* peer = cell -> peers[i];
@@ -120,7 +128,6 @@ Cell* choice_undo(nDoku* doku, Stack* stack, Heap* heap)
         /* Recalculamos sus opciones */
         if(peer -> value == UNASSIGNED)
         {
-            /* Ahora que tenemos los peers, precomputamos las opciones */
             compute_options(doku, peer);
 
             /* Calculamos su prioridad */
@@ -235,9 +242,8 @@ bool solve_n_doku(nDoku* doku, Stack* stack)
         /* Si la celda no tiene opciones o la opcion tomada no es valida */
         /* Aqui las opciones ya vienen calculadas */
         if(next -> count == 0 || !assign_next(doku, next, stack, heap))
-        // if(!compute_options(doku, next) || !assign_next(doku, next, stack, heap))
         {
-            while(true)
+            do
             {
                 /* Recuperamos la celda que tomo la ultima desicion */
                 while(true)
@@ -266,12 +272,8 @@ bool solve_n_doku(nDoku* doku, Stack* stack)
                     }
                 }
 
-                /* Si es una asignacion valida, podemos pasar al siguiente */
-                if(assign_next(doku, next, stack, heap))
-                {
-                    break;
-                }
-            }
+            /* Retrocedemos hasta poder tomar una opcion valida */
+            }while(!assign_next(doku, next, stack, heap));
         }
 
     /* Cuando el stack esté vacio, significa que ya probamos todo */

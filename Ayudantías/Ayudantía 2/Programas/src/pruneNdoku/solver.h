@@ -13,9 +13,6 @@ unsigned int undo_count;
 /* Indica que se debe notificar cada paso del algoritmo */
 bool step;
 
-/* Indica que debemos podar */
-bool poda;
-
 /* Intenta darle valor a una celda y resolver el puzzle resultante */
 /* Retorna true si el puzzle tiene solucion, false si no */
 bool solve_n_doku(nDoku* doku, Stack* stack);

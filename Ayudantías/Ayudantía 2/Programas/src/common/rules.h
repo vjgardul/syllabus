@@ -12,4 +12,8 @@
 /* Indica si es legal asignar el numero en la celda espeficada */
 bool is_safe(nDoku* doku, int row, int col, int num);
 
+/* Encargado de la randomicidad de las celdas */
+void shuffle(int *array, size_t n, Cell* cell);
+
+
 #endif /* end of include guard: A2_RULES */
