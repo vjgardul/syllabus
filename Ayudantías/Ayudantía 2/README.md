@@ -30,22 +30,22 @@ Ejecuta el solver con heurísticas para resolver un sudoku tradicional de 9x9 e 
 
 Ejecuta el solver básico con un n-doku de 25x25 y espera a encontrar la solucion para imprimirla.
 
-##### Watcher
+### Watcher
 
 Los 4 programas pueden ser visualizados usando el **watcher** provisto, pasandole el output del solver que escojas.
 
 Una forma de hacerlo es con pipes:
 
 ```sh
-./heuristicNdoku 3 step | ./watcher
+./pruneNdoku 2 fast | ./watcher
 ```
 
 Puedes regular el delay entre las actualizaciones de la ventana pasando un parámetro adicional al **watcher**, de la siguiente manera:
 
 ```sh
-./heuristicNdoku 3 step | ./watcher n
+./fastNdoku 4 step | ./watcher t
 ```
-Eso hará que el watcher actualize cada _n_ milisegundos. O por lo menos lo intentará.
+Eso hará que el watcher actualize cada _t_ milisegundos. O por lo menos lo intentará.
 
 Cualquier problema no dudes en preguntar!
 
