@@ -6,8 +6,6 @@
 # Makefile diseñada para el trabajo de varios programas con código común      #
 ###############################################################################
 
-# TODO URGENTE: RECOMPILAR TODO AL CAMBIAR UN .H
-
 # Indica que se debe parsear el archivo dos veces
 .SECONDEXPANSION:
 
