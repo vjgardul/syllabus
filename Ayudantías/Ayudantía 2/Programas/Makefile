@@ -92,7 +92,6 @@ cleanobj:
 	done
 
 # Regla encargada de crear los directorios para guardar los archivos de objeto
-# Regla encargada de crear los directorios para guardar los archivos de objeto
 $(OBJDIR):
 	@mkdir $@
 	
