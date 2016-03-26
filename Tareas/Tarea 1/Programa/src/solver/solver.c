@@ -13,6 +13,9 @@ int main(int argc, char const *argv[])
 
     /* TODO IMPRIMIR DECISIONES */
 
+    /* Indicamos al watcher y al judge que ya terminamos */    
+    printf("END\n");
+
     /* Liberamos memoria */
     city_layout_destroy(layout);
 
