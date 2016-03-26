@@ -39,11 +39,16 @@ SUBST=$(patsubst src/%.c, obj/%.o, $(wildcard src/$(i)/*.c))
 # Por cada .c dentro de src/X, se crea un .o dentro de obj/X
 OBJ=$(foreach i, common $(PROGRAMS), $(SUBST))
 
+# Los directorios para los archivos de objeto
+OBJDIR=obj $(foreach i, common $(PROGRAMS), obj/$(i))
+
 # Al llamar make a secas se ejecutará esta regla, ya que es la primera
-# Llamar a mkobj para que cree las carpetas para guardar los archivos de objeto
+# Llamar a las reglas respectivas para cada uno de los elementos en OBJDIR
+# para que creen las carpetas para guardar los archivos de objeto
 # Llamar a las reglas respectivas con cada uno de los elementos en PROGRAMS
+# para que compilen cada uno de los programas
 # Las otras reglas se pueden llamar con make <regla>. Ej: make clean
-all: mkobj $(PROGRAMS)
+all: $(OBJDIR) $(PROGRAMS)
 	@echo "done compiling"
 
 # Regla que especifíca como compilar los archivos de objeto
@@ -87,12 +92,9 @@ cleanobj:
 	done
 
 # Regla encargada de crear los directorios para guardar los archivos de objeto
-mkobj:
-	@(mkdir obj 2>/dev/null || true) &&      # Crea primero la carpeta obj    \
-	for i in common $(PROGRAMS); do 		 # Y luego por cada programa 	  \
-		(mkdir obj/$$i 2>/dev/null || true); # Crea una carpeta adentro       \
-	done
-
+$(OBJDIR):
+	@mkdir $@
+	
 ###############################################################################
 #                   Cualquier duda no temas en preguntar!                     #
 ###############################################################################
